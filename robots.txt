@@ -1,0 +1,24 @@
+# Molozin.ru - Конфигурация для поисковых роботов
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /logs/
+Disallow: /ftp_commands.txt
+Disallow: /*.ps1$
+Disallow: /*.sqlite$
+
+# Яндекс-бот: дополнительные настройки
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Clean-param: lang /
+
+# Google-бот
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://molozin.ru/sitemap.php
+Host: https://molozin.ru

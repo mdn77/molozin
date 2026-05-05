@@ -1,0 +1,77 @@
+# Базы данных
+*.sqlite
+*.sql
+*.zip
+
+# Логи
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+.agent/
+
+# Системное
+.DS_Store
+Thumbs.db
+
+# Деплой-скрипты (локальные утилиты)
+*.ps1
+
+# Утилиты разработки
+cwebp.exe
+*.py
+*.exe
+
+# Кеши
+i18n_cache.json
+
+# Временные файлы
+*.bak
+*.tmp
+*.old
+*.fixed.php
+
+# Дебаг файлы
+*debug*.php
+*test*.php
+temp_*.php
+temp_*.html
+
+# Дампы и временные данные
+*_dump.sql
+downloaded_*.html
+*.txt
+!robots.txt
+
+# Three.js (подключается через CDN)
+THREE.js
+
+# Утилиты для миграции БД
+db_mover.php
+swap_db.php
+unzip_db.php
+fix_*.php
+restore_*.php
+seed_*.php
+bulk_*.php
+regen_*.php
+enrich_*.php
+get_top_urls.php
+check_*.php
+ping_search_engines.php
+
+# Admin утилиты (не для GitHub)
+admin/fix_*.php
+admin/ensure_*.php
+admin/regen_*.php
+admin/seed_*.php
+admin/upgrade_*.php
+
+# Webp-конвертация (утилита)
+webp/
+
+# Antigravity / Gemini
+.antigravity-rules.md
+.gemini/
