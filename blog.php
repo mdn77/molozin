@@ -160,9 +160,9 @@ if ($slug) {
     }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=20">
+    <link rel="stylesheet" href="/styles.css?v=256">
     <link rel="stylesheet" href="/css/blog.css?v=256">
-    <script src="tracker.js" defer></script>
+    <script src="/tracker.js" defer></script>
 </head>
 <body>
     <?php $is_blog_page = true; require_once __DIR__ . '/includes/header.php'; ?>
