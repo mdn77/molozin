@@ -7,6 +7,7 @@ require_once __DIR__ . '/i18n.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= __('Privacy Policy') ?> | Molozin.ru</title>
+    <link rel="canonical" href="https://molozin.ru/privacy/">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -103,6 +103,9 @@ Options -Indexes
     RewriteRule ^terms/?$ terms.php [L]
     RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
+    # RSS-фид блога
+    RewriteRule ^blog/rss\.xml$ blog_rss.php [L]
+
     # Блог: ЧПУ
     # Список статей: /blog/
     RewriteRule ^blog/?$ blog.php [L,QSA]

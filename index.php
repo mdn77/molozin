@@ -78,7 +78,7 @@ if (isset($_GET['seo_slug'])) {
         content="создание сайтов, разработка сайтов, продвижение сайтов, SEO оптимизация, веб-дизайн, landing page, интернет-магазин">
     <meta name="author" content="Molozin.ru">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://molozin.ru/<?= isset($_GET['seo_slug']) ? 'uslugi/'.htmlspecialchars($_GET['seo_slug']) : '' ?>">
+    <link rel="canonical" href="https://molozin.ru/<?= isset($_GET['seo_slug']) ? 'uslugi/'.htmlspecialchars($_GET['seo_slug']).'/' : '' ?>">
 
     <!-- hreflang — мультиязычные версии для поисковиков -->
     <?php
@@ -279,6 +279,51 @@ if (isset($_GET['seo_slug'])) {
         }
         </script>
     <?php endif; endif; ?>
+
+    <!-- Breadcrumbs Schema.org -->
+    <?php if ($is_seo_page): ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://molozin.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги",
+          "item": "https://molozin.ru/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "<?= htmlspecialchars($seo_title) ?>",
+          "item": "https://molozin.ru/uslugi/<?= htmlspecialchars($_GET['seo_slug']) ?>/"
+        }
+      ]
+    }
+    </script>
+    <?php else: ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://molozin.ru/"
+        }
+      ]
+    }
+    </script>
+    <?php endif; ?>
 </head>
 
 <body>
