@@ -131,9 +131,9 @@ Options -Indexes
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
     # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
     
-    # ╨Я╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ HTTPS
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    # [ВРЕМЕННО ОТКЛЮЧЕНО] Принудительный HTTPS — включить после получения сертификата
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
     
     # ╨г╨┤╨░╨╗╨╡╨╜╨╕╨╡ trailing slash (╨╜╨╡╨╛╨▒╤П╨╖╨░╤В╨╡╨╗╤М╨╜╨╛)
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -204,4 +204,3 @@ ErrorDocument 404 /404.php
     Header unset ETag
 </IfModule>
 FileETag None
-
