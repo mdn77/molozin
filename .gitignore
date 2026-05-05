@@ -45,7 +45,7 @@ downloaded_*.html
 *.txt
 !robots.txt
 
-# Three.js (подключается через CDN)
+# Three.js (подключается через CDN — см. Фазу 5)
 THREE.js
 
 # Утилиты для миграции БД
@@ -72,6 +72,20 @@ admin/upgrade_*.php
 # Webp-конвертация (утилита)
 webp/
 
-# Antigravity / Gemini
+# Документация AI (только локально)
 .antigravity-rules.md
 .gemini/
+DEEPSEEK_TASKS.md
+DEEPSEEK_PROMPT.txt
+
+# Локальные текстовые дампы и списки (мусор)
+*.txt
+!robots.txt
+
+# npm / composer (не используется)
+node_modules/
+vendor/
+composer.json
+composer.lock
+package.json
+package-lock.json

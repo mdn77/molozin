@@ -38,7 +38,7 @@ require_once __DIR__ . '/i18n.php';
                     <li><a href="/#portfolio" class="nav-link"><?= __('menu_portfolio') ?></a></li>
                     <li><a href="/#process" class="nav-link"><?= __('menu_process') ?></a></li>
                     <li><a href="/#pricing" class="nav-link"><?= __('menu_pricing') ?></a></li>
-                    <li><a href="/blog.php" class="nav-link"><?= __('menu_blog') ?></a></li>
+                    <li><a href="/blog/" class="nav-link"><?= __('menu_blog') ?></a></li>
                     <li><a href="/#contacts" class="nav-link"><?= __('menu_contacts') ?></a></li>
                 </ul>
 

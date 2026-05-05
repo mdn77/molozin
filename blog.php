@@ -16,6 +16,28 @@ if ($slug) {
     $stmt = $db->prepare("SELECT * FROM blog_posts WHERE slug = ?");
     $stmt->execute([$slug]);
     $article = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // 301 редирект: если slug старый (gen-...) или статья найдена по old_slug
+    if (!$article) {
+        // Попытка найти по old_slug (если миграция уже выполнена)
+        try {
+            $stmt2 = $db->prepare("SELECT * FROM blog_posts WHERE old_slug = ?");
+            $stmt2->execute([$slug]);
+            $article = $stmt2->fetch(PDO::FETCH_ASSOC);
+            if ($article) {
+                header("Location: /blog/" . urlencode($article['slug']) . "/", true, 301);
+                exit;
+            }
+        } catch (Exception $e) {}
+    }
+
+    // 301 редирект: генерённые slug'и (gen-...)
+    if ($article && strpos($article['slug'], 'gen-') === 0) {
+        header("HTTP/1.0 404 Not Found");
+        echo "404 Not Found";
+        exit;
+    }
+
     if (!$article) {
         header("HTTP/1.0 404 Not Found");
         echo "404 Not Found";
@@ -71,6 +93,12 @@ if ($slug) {
     <meta property="og:description" content="<?= $slug ? htmlspecialchars($article['seo_desc'] ?? $article['excerpt']) : 'Статьи о создании и продвижении сайтов, привлечении B2B-клиентов.' ?>">
     <meta property="og:type" content="<?= $slug ? 'article' : 'website' ?>">
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://molozin.ru<?= $slug ? '/blog/' . urlencode($article['slug']) . '/' : '/blog/' ?>">
+
+    <!-- RSS фид блога -->
+    <link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Блог Molozin.ru">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -97,11 +125,40 @@ if ($slug) {
       "@context": "https://schema.org",
       "@type": "Blog",
       "name": "Блог Molozin.ru",
-      "url": "https://molozin.ru/blog.php",
+      "url": "https://molozin.ru/blog/",
       "description": "Решения для бизнеса: как сайты генерируют прибыль, снижают расходы и привлекают лиды."
     }
     </script>
     <?php endif; ?>
+
+    <!-- Breadcrumbs Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://molozin.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Блог",
+          "item": "https://molozin.ru/blog/"
+        }<?php if ($slug): ?>,
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "<?= htmlspecialchars($article['title']) ?>",
+          "item": "https://molozin.ru/blog/<?= urlencode($article['slug']) ?>/"
+        }
+        <?php endif; ?>
+      ]
+    }
+    </script>
 
     <link rel="stylesheet" href="styles.css?v=20">
     <script src="tracker.js" defer></script>
@@ -214,7 +271,7 @@ if ($slug) {
                     <li><a href="/#portfolio" class="nav-link"><?= __('menu_portfolio') ?></a></li>
                     <li><a href="/#process" class="nav-link"><?= __('menu_process') ?></a></li>
                     <li><a href="/#pricing" class="nav-link"><?= __('menu_pricing') ?></a></li>
-                    <li><a href="/blog.php" class="nav-link" style="color:var(--color-primary)"><?= __('menu_blog') ?></a></li>
+                    <li><a href="/blog/" class="nav-link" style="color:var(--color-primary)"><?= __('menu_blog') ?></a></li>
                     <li><a href="/#contacts" class="nav-link"><?= __('menu_contacts') ?></a></li>
                     
                     <li class="mobile-contact-item">
@@ -283,7 +340,7 @@ if ($slug) {
         <?php if ($slug): ?>
             <!-- ЧТЕНИЕ СТАТЬИ -->
             <div class="article-page">
-                <a href="/blog.php" class="btn-back-blog">
+                <a href="/blog/" class="btn-back-blog">
                     <i class="fas fa-arrow-left" style="margin-right:8px;"></i> В блог
                 </a>
                 
@@ -368,7 +425,7 @@ if ($slug) {
                         ?>
                         <div class="news-card" style="display:flex; flex-direction:column; height:100%;">
                             <?php if(!empty($r_art['image'])): ?>
-                            <a href="blog.php?article=<?= urlencode($r_art['slug']) ?>" class="news-img-wrap" style="padding-top:60%;">
+                            <a href="/blog/<?= urlencode($r_art['slug']) ?>/" class="news-img-wrap" style="padding-top:60%;">
                                 <img src="<?= htmlspecialchars($r_art['image']) ?>" alt="<?= htmlspecialchars($r_art['title']) ?>" class="news-img" loading="lazy">
                                 <div class="news-badges">
                                     <span class="news-badge <?= $r_gradClass ?>" style="border-radius: 0 0 12px 0;"><?= htmlspecialchars($r_catName) ?></span>
@@ -380,7 +437,7 @@ if ($slug) {
                                     <span><?= date('d.m.Y', strtotime($r_art['published_at'] ?? $r_art['created_at'])) ?></span>
                                 </div>
                                 <h4 class="news-title" style="font-size:1.2rem; margin-bottom:0px;">
-                                    <a href="blog.php?article=<?= urlencode($r_art['slug']) ?>">
+                                    <a href="/blog/<?= urlencode($r_art['slug']) ?>/">
                                         <?= htmlspecialchars(__($r_art['title'])) ?>
                                     </a>
                                 </h4>
@@ -424,7 +481,7 @@ if ($slug) {
                         <?php if ($hasImage): ?>
                             <!-- CARD WITH IMAGE -->
                             <article class="news-card">
-                                <a href="blog.php?article=<?= urlencode($art['slug']) ?>" class="news-img-wrap">
+                                <a href="/blog/<?= urlencode($art['slug']) ?>/" class="news-img-wrap">
                                     <img src="<?= htmlspecialchars($art['image']) ?>" alt="<?= htmlspecialchars($art['title']) ?>" class="news-img" loading="lazy">
                                     <div class="news-badges">
                                         <span class="news-badge <?= $gradClass ?>" style="border-radius: 0 0 12px 0;"><?= htmlspecialchars($catName) ?></span>
@@ -444,7 +501,7 @@ if ($slug) {
                                         <div><i class="far fa-eye"></i> <?= $art['views'] ?? 1 ?></div>
                                     </div>
                                     <h3 class="news-title">
-                                        <a href="blog.php?article=<?= urlencode($art['slug']) ?>">
+                                        <a href="/blog/<?= urlencode($art['slug']) ?>/">
                                             <?= htmlspecialchars(__($art['title'])) ?>
                                         </a>
                                     </h3>
@@ -461,7 +518,7 @@ if ($slug) {
                                         <span class="news-badge <?= $gradClass ?>"><?= htmlspecialchars($catName) ?></span>
                                     </div>
                                     <h3 class="news-title" style="margin-top:auto;">
-                                        <a href="blog.php?article=<?= urlencode($art['slug']) ?>">
+                                        <a href="/blog/<?= urlencode($art['slug']) ?>/">
                                             <?= htmlspecialchars(__($art['title'])) ?>
                                         </a>
                                     </h3>
