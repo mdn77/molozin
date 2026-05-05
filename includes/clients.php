@@ -10,7 +10,7 @@
             <a href="https://lanacake.ru" target="_blank" rel="noopener" class="logos-marquee-link">LanaCake</a>
             <a href="https://3dcorp.ru" target="_blank" rel="noopener" class="logos-marquee-link">3DCorp</a>
             <a href="https://best70.ru" target="_blank" rel="noopener" class="logos-marquee-link">Best70</a>
-            <a href="https://ksil.r-70.ru" target="_blank" rel="noopener" class="logos-marquee-link">KSIL 3D</a>
+            <a href="https://kamaksil.ru" target="_blank" rel="noopener" class="logos-marquee-link">KAMAKSIL</a>
             <a href="https://arenda.r-70.ru" target="_blank" rel="noopener" class="logos-marquee-link">Arenda</a>
             <a href="https://uslugi70.ru" target="_blank" rel="noopener" class="logos-marquee-link">Uslugi70</a>
             <a href="https://fan3d.ru" target="_blank" rel="noopener" class="logos-marquee-link">Fan3D</a>
@@ -26,7 +26,7 @@
             <span class="logos-marquee-link">LanaCake</span>
             <span class="logos-marquee-link">3DCorp</span>
             <span class="logos-marquee-link">Best70</span>
-            <span class="logos-marquee-link">KSIL 3D</span>
+            <span class="logos-marquee-link">KAMAKSIL</span>
             <span class="logos-marquee-link">Arenda</span>
             <span class="logos-marquee-link">Uslugi70</span>
             <span class="logos-marquee-link">Fan3D</span>
