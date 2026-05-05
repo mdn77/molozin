@@ -1,29 +1,29 @@
-# Молозин.ру - Конфигурация Apache
+# ╨Ь╨╛╨╗╨╛╨╖╨╕╨╜.╤А╤Г - ╨Ъ╨╛╨╜╤Д╨╕╨│╤Г╤А╨░╤Ж╨╕╤П Apache
 
 # ==========================================
-# БЕЗОПАСНОСТЬ
+# ╨С╨Х╨Ч╨Ю╨Я╨Р╨б╨Э╨Ю╨б╨в╨м
 # ==========================================
 
-# Отключить отображение содержимого директорий
+# ╨Ю╤В╨║╨╗╤О╤З╨╕╤В╤М ╨╛╤В╨╛╨▒╤А╨░╨╢╨╡╨╜╨╕╨╡ ╤Б╨╛╨┤╨╡╤А╨╢╨╕╨╝╨╛╨│╨╛ ╨┤╨╕╤А╨╡╨║╤В╨╛╤А╨╕╨╣
 Options -Indexes
 
-# Защита от просмотра .htaccess и других служебных файлов
+# ╨Ч╨░╤Й╨╕╤В╨░ ╨╛╤В ╨┐╤А╨╛╤Б╨╝╨╛╤В╤А╨░ .htaccess ╨╕ ╨┤╤А╤Г╨│╨╕╤Е ╤Б╨╗╤Г╨╢╨╡╨▒╨╜╤Л╤Е ╤Д╨░╨╣╨╗╨╛╨▓
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Защита конфигурационных и log файлов
+# ╨Ч╨░╤Й╨╕╤В╨░ ╨║╨╛╨╜╤Д╨╕╨│╤Г╤А╨░╤Ж╨╕╨╛╨╜╨╜╤Л╤Е ╨╕ log ╤Д╨░╨╣╨╗╨╛╨▓
 <FilesMatch "\.(log|ini|conf|bak|sql)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Защита от инъекций в URL
+# ╨Ч╨░╤Й╨╕╤В╨░ ╨╛╤В ╨╕╨╜╤К╨╡╨║╤Ж╨╕╨╣ ╨▓ URL
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Блокировка подозрительных паттернов в URL
+    # ╨С╨╗╨╛╨║╨╕╤А╨╛╨▓╨║╨░ ╨┐╨╛╨┤╨╛╨╖╤А╨╕╤В╨╡╨╗╤М╨╜╤Л╤Е ╨┐╨░╤В╤В╨╡╤А╨╜╨╛╨▓ ╨▓ URL
     RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
     RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
     RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
@@ -31,19 +31,19 @@ Options -Indexes
 </IfModule>
 
 # ==========================================
-# ПРОИЗВОДИТЕЛЬНОСТЬ
+# ╨Я╨а╨Ю╨Ш╨Ч╨Т╨Ю╨Ф╨Ш╨в╨Х╨Ы╨м╨Э╨Ю╨б╨в╨м
 # ==========================================
 
-# Включить сжатие GZIP
+# ╨Т╨║╨╗╤О╤З╨╕╤В╤М ╤Б╨╢╨░╤В╨╕╨╡ GZIP
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml
 </IfModule>
 
-# Кэширование статических файлов
+# ╨Ъ╤Н╤И╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ ╤Б╤В╨░╤В╨╕╤З╨╡╤Б╨║╨╕╤Е ╤Д╨░╨╣╨╗╨╛╨▓
 <IfModule mod_expires.c>
     ExpiresActive On
     
-    # Изображения
+    # ╨Ш╨╖╨╛╨▒╤А╨░╨╢╨╡╨╜╨╕╤П
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
@@ -51,12 +51,12 @@ Options -Indexes
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
     
-    # CSS и JavaScript
+    # CSS ╨╕ JavaScript
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
     
-    # Шрифты
+    # ╨и╤А╨╕╤Д╤В╤Л
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType font/ttf "access plus 1 year"
@@ -66,32 +66,32 @@ Options -Indexes
     ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
-# Кэш-контроль
+# ╨Ъ╤Н╤И-╨║╨╛╨╜╤В╤А╨╛╨╗╤М
 <IfModule mod_headers.c>
-    # Статические ресурсы - долгое кэширование
+    # ╨б╤В╨░╤В╨╕╤З╨╡╤Б╨║╨╕╨╡ ╤А╨╡╤Б╤Г╤А╤Б╤Л - ╨┤╨╛╨╗╨│╨╛╨╡ ╨║╤Н╤И╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡
     <FilesMatch "\.(ico|jpg|jpeg|png|gif|svg|webp|css|js|woff|woff2|ttf|otf)$">
         Header set Cache-Control "max-age=31536000, public"
     </FilesMatch>
     
-    # HTML - без кэширования
+    # HTML - ╨▒╨╡╨╖ ╨║╤Н╤И╨╕╤А╨╛╨▓╨░╨╜╨╕╤П
     <FilesMatch "\.(html|htm|php)$">
         Header set Cache-Control "no-cache, no-store, must-revalidate"
         Header set Pragma "no-cache"
         Header set Expires 0
     </FilesMatch>
     
-    # Безопасность заголовков
+    # ╨С╨╡╨╖╨╛╨┐╨░╤Б╨╜╨╛╤Б╤В╤М ╨╖╨░╨│╨╛╨╗╨╛╨▓╨║╨╛╨▓
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-XSS-Protection "1; mode=block"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
     
-    # Content Security Policy (настройте под свои нужды)
+    # Content Security Policy (╨╜╨░╤Б╤В╤А╨╛╨╣╤В╨╡ ╨┐╨╛╨┤ ╤Б╨▓╨╛╨╕ ╨╜╤Г╨╢╨┤╤Л)
     # Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://mc.yandex.ru;"
 </IfModule>
 
 # ==========================================
-# ЧИСТЫЕ URL (без .html расширений)
+# ╨з╨Ш╨б╨в╨л╨Х URL (╨▒╨╡╨╖ .html ╤А╨░╤Б╤И╨╕╤А╨╡╨╜╨╕╨╣)
 # ==========================================
 
 <IfModule mod_rewrite.c>
@@ -103,13 +103,13 @@ Options -Indexes
     RewriteRule ^terms/?$ terms.php [L]
     RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
-    # RSS-фид блога
+    # RSS-╤Д╨╕╨┤ ╨▒╨╗╨╛╨│╨░
     RewriteRule ^blog/rss\.xml$ blog_rss.php [L]
 
-    # Блог: ЧПУ
-    # Список статей: /blog/
+    # ╨С╨╗╨╛╨│: ╨з╨Я╨г
+    # ╨б╨┐╨╕╤Б╨╛╨║ ╤Б╤В╨░╤В╨╡╨╣: /blog/
     RewriteRule ^blog/?$ blog.php [L,QSA]
-    # Статья блога: /blog/{slug}/
+    # ╨б╤В╨░╤В╤М╤П ╨▒╨╗╨╛╨│╨░: /blog/{slug}/
     RewriteRule ^blog/([a-zA-Z0-9_-]+)/?$ blog.php?article=$1 [L,QSA]
 
     # PROG SEO ROUTING: /uslugi/slug -> index.php?seo_slug=slug
@@ -117,25 +117,25 @@ Options -Indexes
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^uslugi/([a-zA-Z0-9_-]+)/?$ index.php?seo_slug=$1 [L,QSA]
     
-    # Удаление .html из URL
+    # ╨г╨┤╨░╨╗╨╡╨╜╨╕╨╡ .html ╨╕╨╖ URL
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule ^(.*)$ $1.html [L]
     
-    # Редирект с www на без www (или наоборот, выберите нужное)
-    # Вариант 1: БЕЗ www
+    # ╨а╨╡╨┤╨╕╤А╨╡╨║╤В ╤Б www ╨╜╨░ ╨▒╨╡╨╖ www (╨╕╨╗╨╕ ╨╜╨░╨╛╨▒╨╛╤А╨╛╤В, ╨▓╤Л╨▒╨╡╤А╨╕╤В╨╡ ╨╜╤Г╨╢╨╜╨╛╨╡)
+    # ╨Т╨░╤А╨╕╨░╨╜╤В 1: ╨С╨Х╨Ч www
     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
     RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
     
-    # Вариант 2: С www (закомментирован)
+    # ╨Т╨░╤А╨╕╨░╨╜╤В 2: ╨б www (╨╖╨░╨║╨╛╨╝╨╝╨╡╨╜╤В╨╕╤А╨╛╨▓╨░╨╜)
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
     # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
     
-    # Принудительный HTTPS
+    # ╨Я╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ HTTPS
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
     
-    # Удаление trailing slash (необязательно)
+    # ╨г╨┤╨░╨╗╨╡╨╜╨╕╨╡ trailing slash (╨╜╨╡╨╛╨▒╤П╨╖╨░╤В╨╡╨╗╤М╨╜╨╛)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [R=301,L]
@@ -156,51 +156,51 @@ Options -Indexes
 </IfModule>
 
 # ==========================================
-# ОГРАНИЧЕНИЕ РАЗМЕРА ФАЙЛОВ
+# ╨Ю╨У╨а╨Р╨Э╨Ш╨з╨Х╨Э╨Ш╨Х ╨а╨Р╨Ч╨Ь╨Х╨а╨Р ╨д╨Р╨Щ╨Ы╨Ю╨Т
 # ==========================================
 
-# Увеличение лимитов для загрузки файлов (если нужно)
+# ╨г╨▓╨╡╨╗╨╕╤З╨╡╨╜╨╕╨╡ ╨╗╨╕╨╝╨╕╤В╨╛╨▓ ╨┤╨╗╤П ╨╖╨░╨│╤А╤Г╨╖╨║╨╕ ╤Д╨░╨╣╨╗╨╛╨▓ (╨╡╤Б╨╗╨╕ ╨╜╤Г╨╢╨╜╨╛)
 # php_value upload_max_filesize 50M
 # php_value post_max_size 50M
 # php_value max_execution_time 300
 # php_value max_input_time 300
 
 # ==========================================
-# КОДИРОВКА
+# ╨Ъ╨Ю╨Ф╨Ш╨а╨Ю╨Т╨Ъ╨Р
 # ==========================================
 
 AddDefaultCharset UTF-8
 
 # ==========================================
-# СТРАНИЦЫ ОШИБОК
+# ╨б╨в╨а╨Р╨Э╨Ш╨ж╨л ╨Ю╨и╨Ш╨С╨Ю╨Ъ
 # ==========================================
 
 ErrorDocument 404 /404.php
 # ErrorDocument 500 /500.html
 
 # ==========================================
-# БЛОКИРОВКА СПАМ-БОТОВ (опционально)
+# ╨С╨Ы╨Ю╨Ъ╨Ш╨а╨Ю╨Т╨Ъ╨Р ╨б╨Я╨Р╨Ь-╨С╨Ю╨в╨Ю╨Т (╨╛╨┐╤Ж╨╕╨╛╨╜╨░╨╗╤М╨╜╨╛)
 # ==========================================
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Блокировка известных спам-ботов
+    # ╨С╨╗╨╛╨║╨╕╤А╨╛╨▓╨║╨░ ╨╕╨╖╨▓╨╡╤Б╤В╨╜╤Л╤Е ╤Б╨┐╨░╨╝-╨▒╨╛╤В╨╛╨▓
     RewriteCond %{HTTP_USER_AGENT} ^.*(SemrushBot|AhrefsBot|MJ12bot|DotBot).*$ [NC]
     RewriteRule ^.* - [F,L]
 </IfModule>
 
 # ==========================================
-# �������������� ����������� ��������
+# я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 # ==========================================
 
 <IfModule mod_expires.c>
-    # �������������� ������� ��� WebP
+    # я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ WebP
     ExpiresByType image/webp "access plus 1 year"
 </IfModule>
 
 <IfModule mod_headers.c>
-    # ���������� ETags ��� ��������� ������ ����
+    # я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ ETags я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
     Header unset ETag
 </IfModule>
 FileETag None
