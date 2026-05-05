@@ -34,24 +34,48 @@
 molozin.ru/
 ├── index.php              # Главная страница (SEO-лендинги через /uslugi/{slug}/)
 ├── blog.php               # Блог: список /blog/ и статья /blog/{slug}/
+├── blog_rss.php           # RSS-фид блога (/blog/rss.xml)
 ├── privacy.php            # Политика конфиденциальности
 ├── terms.php              # Условия использования
+├── 404.php                # Страница ошибки 404 (тёмный premium-дизайн)
 ├── sitemap.php            # Динамическая карта сайта (/sitemap.xml)
 ├── send-email.php         # Обработчик формы обратной связи
-├── i18n.php               # Система мультиязычности
+├── i18n.php               # Система мультиязычности (10 языков)
 ├── i18n_cache.json        # Кэш переводов (игнорируется git)
 │
 ├── styles.css             # Основные стили сайта
 ├── script.js              # Основной JavaScript
 ├── tracker.js             # Трекер аналитики
 │
-├── .htaccess              # Конфигурация Apache: ЧПУ, безопасность, кэширование
+├── .htaccess              # Конфигурация Apache: ЧПУ, 404, безопасность, кэширование
 ├── robots.txt             # Правила для поисковых роботов
+├── site.webmanifest       # PWA-манифест
+│
+├── includes/              # PHP-компоненты (подключаются в index.php)
+│   ├── header.php         # Шапка + навигация + языковой переключатель
+│   ├── hero.php           # Hero-секция с 3D (Three.js)
+│   ├── clients.php        # Логотипы клиентов (marquee)
+│   ├── portfolio.php      # Портфолио / кейсы
+│   ├── services.php       # Услуги
+│   ├── ecosystem.php      # Экосистема продуктов
+│   ├── process.php        # Процесс работы
+│   ├── pricing.php        # Тарифы
+│   ├── testimonials.php   # Отзывы (блок неактивен)
+│   ├── contact.php        # Форма обратной связи
+│   ├── footer.php         # Подвал сайта
+│   └── seo-schemas.php    # JSON-LD схемы (Organization, Breadcrumbs, FAQ)
+│
+├── css/                   # Стили
+│   └── blog.css           # Стили блога (вынесены из blog.php)
 │
 ├── assets/                # Статические ресурсы
-│   ├── flags/             # SVG-флаги для языкового переключателя
+│   ├── flags/             # SVG-флаги для языкового переключателя (10 шт.)
 │   ├── *.png, *.webp      # Превью портфолио, иконки
-│   └── og-image.jpg       # Open Graph изображение
+│   ├── og-image.jpg       # Open Graph изображение (1200×630)
+│   └── twitter-image.jpg  # Twitter Card изображение (1200×600)
+│
+├── api/                   # API-эндпоинты
+│   └── track.php          # Трекер аналитики
 │
 └── admin/                 # Административная панель
     ├── index.php          # Главная админки

@@ -114,8 +114,8 @@ if (isset($_GET['seo_slug'])) {
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="/styles.css?v=256">
+    <!-- Styles (версионирование через filemtime) -->
+    <link rel="stylesheet" href="/styles.css?v=<?= filemtime(__DIR__.'/styles.css') ?>">
 
     <?php require_once __DIR__ . '/includes/seo-schemas.php'; ?>
 </head>
@@ -246,8 +246,8 @@ if (isset($_GET['seo_slug'])) {
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <!-- Custom Script -->
-    <script src="/script.js?v=256" defer></script>
+    <!-- Custom Script (версионирование через filemtime) -->
+    <script src="/script.js?v=<?= filemtime(__DIR__.'/script.js') ?>" defer></script>
     <!-- Analytics Tracker -->
     <script src="/tracker.js" defer></script>
 </body>

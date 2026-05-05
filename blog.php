@@ -160,8 +160,9 @@ if ($slug) {
     }
     </script>
 
-    <link rel="stylesheet" href="/styles.css?v=256">
-    <link rel="stylesheet" href="/css/blog.css?v=256">
+    <!-- Стили (версионирование через filemtime) -->
+    <link rel="stylesheet" href="/styles.css?v=<?= filemtime(__DIR__.'/styles.css') ?>">
+    <link rel="stylesheet" href="/css/blog.css?v=<?= filemtime(__DIR__.'/css/blog.css') ?>">
     <script src="/tracker.js" defer></script>
 </head>
 <body>
@@ -405,6 +406,7 @@ if ($slug) {
     })();
     </script>
 
-    <script src="script.js?v=4"></script>
+    <!-- Основной скрипт (версионирование через filemtime) -->
+    <script src="/script.js?v=<?= filemtime(__DIR__.'/script.js') ?>"></script>
 </body>
 </html>
