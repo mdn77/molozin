@@ -15,17 +15,8 @@ require_once __DIR__ . '/i18n.php';
     
     <link rel="stylesheet" href="styles.css?v=15">
     <script src="tracker.js" defer></script>
-    <style>
-        .legal-page { padding: 160px 20px 80px; max-width: 800px; margin: 0 auto; min-height: 80vh; }
-        .legal-title { font-size: var(--text-4xl); font-weight: 800; font-family: var(--font-display); margin-bottom: 40px; color: var(--color-text); }
-        .legal-content { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.8; }
-        .legal-content h2 { color: var(--color-text); font-size: var(--text-xl); margin: 40px 0 20px; font-weight: 700; }
-        .legal-content p { margin-bottom: 20px; }
-        .btn-back { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 40px; color: var(--color-primary); text-decoration: none; font-weight: 600; }
-        .btn-back:hover { text-decoration: underline; }
-    </style>
 </head>
-<body style="background: var(--color-bg);">
+<body>
     <header class="header scrolled" id="header">
         <div class="container">
             <nav class="nav">

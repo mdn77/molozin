@@ -228,7 +228,7 @@ if (isset($_GET['seo_slug'])) {
                             <p class="calc-result-desc"><?= __('calc_res_sub') ?></p>
                             
                             <div class="calc-capture">
-                                <button class="btn btn-primary btn-full" onclick="document.getElementById('contacts').scrollIntoView({behavior:'smooth'});" style="font-size: 1.1rem; padding: 15px;"><?= __('calc_btn') ?></button>
+                                <button class="btn btn-primary btn-full calc-btn" onclick="document.getElementById('contacts').scrollIntoView({behavior:'smooth'});"><?= __('calc_btn') ?></button>
                                 <p class="calc-capture-hint"><?= __('calc_hint') ?></p>
                             </div>
                         </div>
@@ -243,78 +243,6 @@ if (isset($_GET['seo_slug'])) {
     <?php require_once __DIR__ . '/includes/contact.php'; ?>
 
     <?php require_once __DIR__ . '/includes/footer.php'; ?>
-
-    <!-- Interactive Portfolio Modal Viewer -->
-    <div class="portfolio-modal" id="portfolioModal" aria-hidden="true">
-        <div class="portfolio-modal-overlay" id="portfolioModalOverlay"></div>
-        <div class="portfolio-modal-container">
-            <div class="portfolio-modal-header">
-                <div class="portfolio-modal-info">
-                    <h3 class="portfolio-modal-title" id="portfolioModalTitle"><?= __('modal_title_default') ?></h3>
-                    <a href="#" class="portfolio-modal-link" id="portfolioModalLink" target="_blank">
-                        <?= __('modal_open') ?>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-                        </svg>
-                    </a>
-                </div>
-
-                <div class="portfolio-modal-devices">
-                    <button class="device-btn active" data-device="desktop" title="<?= __('modal_desktop') ?>">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                            <line x1="8" y1="21" x2="16" y2="21" />
-                            <line x1="12" y1="17" x2="12" y2="21" />
-                        </svg>
-                    </button>
-                    <button class="device-btn" data-device="mobile" title="<?= __('modal_mobile') ?>">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                            <line x1="12" y1="18" x2="12.01" y2="18" />
-                        </svg>
-                    </button>
-                </div>
-
-                <button class="portfolio-modal-close" id="portfolioModalClose" aria-label="<?= __('modal_close') ?>">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="portfolio-modal-body" style="display:flex; flex-direction:row; background: var(--color-bg-secondary); padding: 0;">
-                <div class="portfolio-sidebar" id="portfolioSidebar">
-                    <div class="sidebar-badge"><?= __('modal_badge') ?></div>
-                    <h4 id="portfolioSidebarTitle" class="sidebar-title"><?= __('modal_title_default') ?></h4>
-                    <p id="portfolioSidebarDesc" class="sidebar-desc"><?= __('modal_desc_default') ?></p>
-                    
-                    <div class="sidebar-features">
-                        <h5><?= __('modal_what_done') ?></h5>
-                        <ul id="portfolioSidebarTags" class="sidebar-tags-list">
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-maker">
-                        <strong><?= __('modal_studio') ?></strong>
-                        <span><?= __('modal_studio_desc') ?></span>
-                    </div>
-                </div>
-                <div class="portfolio-iframe-container" style="flex:1; border-left: 1px solid var(--color-border); position: relative; overflow-y: auto; overflow-x: hidden; background: var(--color-bg); display: flex; flex-direction: column;">
-                    <div class="iframe-wrapper loader-active" id="iframeWrapper">
-                        <div class="iframe-loader">
-                            <div class="spinner"></div>
-                            <span><?= __('modal_loading') ?></span>
-                        </div>
-                        <iframe id="portfolioIframe" title="Интерактивный просмотр сайта" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>

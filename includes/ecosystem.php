@@ -1,7 +1,7 @@
 <!-- Ecosystem Strategic Section -->
 <section class="section ecosystem" id="ecosystem">
-    <div class="hero-background" style="opacity: 0.3;">
-        <div class="gradient-orb orb-2" style="top: -20%; right: -10%;"></div>
+    <div class="hero-background ecosystem-hero-bg">
+        <div class="gradient-orb orb-2 ecosystem-orb"></div>
     </div>
     <div class="container">
         <div class="section-header">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="eco-card-body">
                     <p class="eco-card-desc"><?= __('eco_1_desc') ?></p>
-                    <span class="service-link" style="pointer-events:none;"><?= __('serv_more') ?></span>
+                    <span class="service-link eco-service-link"><?= __('serv_more') ?></span>
                 </div>
             </a>
 
@@ -39,7 +39,7 @@
                 </div>
                 <div class="eco-card-body">
                     <p class="eco-card-desc"><?= __('eco_2_desc') ?></p>
-                    <span class="service-link" style="pointer-events:none;"><?= __('serv_more') ?></span>
+                    <span class="service-link eco-service-link"><?= __('serv_more') ?></span>
                 </div>
             </a>
 
@@ -55,7 +55,7 @@
                 </div>
                 <div class="eco-card-body">
                     <p class="eco-card-desc"><?= __('eco_3_desc') ?></p>
-                    <span class="service-link" style="pointer-events:none;"><?= __('serv_more') ?></span>
+                    <span class="service-link eco-service-link"><?= __('serv_more') ?></span>
                 </div>
             </a>
         </div>

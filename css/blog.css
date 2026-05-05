@@ -328,6 +328,10 @@
   color: var(--color-text);
 }
 
+.btn-back-icon {
+  margin-right: 8px;
+}
+
 .btn-back-blog {
   display: inline-flex;
   align-items: center;
@@ -397,4 +401,121 @@
     bottom: 1.2rem;
     right: 1rem;
   }
+}
+
+/* Article featured image */
+.article-featured-img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Article CTA block */
+.article-cta-block {
+  text-align: center;
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border);
+}
+
+.article-cta-title {
+  font-family: "Playfair Display", serif;
+  color: var(--color-text);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.article-cta-desc {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.article-cta-btn {
+  padding: 15px 40px;
+  font-size: 1.1rem;
+}
+
+/* Related articles section */
+.related-articles-section {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border);
+}
+
+.related-articles-title {
+  font-family: "Playfair Display", serif;
+  color: var(--color-text);
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.related-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* Related article card overrides */
+.related-article-card .news-body {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.related-article-card .news-meta-row {
+  margin-bottom: 12px;
+  border-bottom: none;
+}
+
+.related-article-card .news-title {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+/* Blog header description */
+.blog-header-desc {
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Empty state */
+.blog-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px;
+  color: #666;
+}
+
+.blog-empty-icon {
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Badge corners — right-side radius for image card badges */
+.news-badge-right {
+  border-radius: 0 0 12px 0;
+}
+
+/* Hot badge */
+.news-badge-hot {
+  background: #e74c3c;
+  border-radius: 0 0 12px 0;
+}
+
+/* Article meta accent (reading time) */
+.article-meta-accent {
+  color: var(--color-primary);
+}
+
+/* Text-only card title */
+.news-card-text-only .news-title-auto {
+  margin-top: auto;
 }

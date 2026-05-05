@@ -172,7 +172,7 @@ if ($slug) {
             <!-- ЧТЕНИЕ СТАТЬИ -->
             <div class="article-page">
                 <a href="/blog/" class="btn-back-blog">
-                    <i class="fas fa-arrow-left" style="margin-right:8px;"></i> В блог
+                    <i class="fas fa-arrow-left btn-back-icon"></i> В блог
                 </a>
                 
                 <div class="article-meta-top">
@@ -183,14 +183,14 @@ if ($slug) {
                     ?>
                     <span class="badge <?= $gradClass ?>"><?= htmlspecialchars($catName) ?></span>
                     <span><i class="far fa-calendar-alt"></i> <?= date('d.m.Y', strtotime($article['published_at'] ?? $article['created_at'])) ?></span>
-                    <span style="color:var(--color-primary)"><i class="far fa-clock"></i> <?= $article['read_time'] ?? ceil(str_word_count(strip_tags($article['content']))/200) ?> мин</span>
+                    <span class="article-meta-accent"><i class="far fa-clock"></i> <?= $article['read_time'] ?? ceil(str_word_count(strip_tags($article['content']))/200) ?> мин</span>
                     <span><i class="far fa-eye"></i> <?= $article['views'] ?? 1 ?></span>
                 </div>
                 
                 <h1 class="article-title-main"><?= htmlspecialchars($article['title']) ?></h1>
                 
                 <?php if (!empty($article['image'])): ?>
-                    <img src="<?= htmlspecialchars($article['image']) ?>" alt="<?= htmlspecialchars($article['title']) ?>" style="width:100%; border-radius:16px; margin-bottom: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <img src="<?= htmlspecialchars($article['image']) ?>" alt="<?= htmlspecialchars($article['title']) ?>" class="article-featured-img">
                 <?php endif; ?>
 
                 <article class="article-content">
@@ -238,36 +238,36 @@ if ($slug) {
                     ?>
                 </article>
                 
-                <div style="text-align:center; margin-top:80px; padding-top:40px; border-top:1px solid var(--color-border);">
-                    <h3 style="font-family:'Playfair Display',serif; color:var(--color-text); font-size:2rem; margin-bottom:20px;">Готовы опередить конкурентов?</h3>
-                    <p style="color:var(--color-text-secondary); font-size:1.1rem; margin-bottom:30px;">Доверьте разработку сайта или портала профессионалам. Мы создаем инструменты, которые приносят прибыль.</p>
-                    <a href="/#contacts" class="btn btn-primary btn-large" style="padding:15px 40px; font-size:1.1rem;">Обсудить ваш проект</a>
+                <div class="article-cta-block">
+                    <h3 class="article-cta-title">Готовы опередить конкурентов?</h3>
+                    <p class="article-cta-desc">Доверьте разработку сайта или портала профессионалам. Мы создаем инструменты, которые приносят прибыль.</p>
+                    <a href="/#contacts" class="btn btn-primary btn-large article-cta-btn">Обсудить ваш проект</a>
                 </div>
 
                 <!-- ПЕРЕЛИНКОВКА (Читайте также) -->
                 <?php if (!empty($related_articles)): ?>
-                <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--color-border);">
-                    <h3 style="font-family:'Playfair Display',serif; color:var(--color-text); font-size:2rem; margin-bottom:40px; text-align:center;">Читайте также</h3>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:24px;">
+                <div class="related-articles-section">
+                    <h3 class="related-articles-title">Читайте также</h3>
+                    <div class="related-articles-grid">
                         <?php foreach($related_articles as $r_art): 
                             $r_catName = $r_art['category_name'] ?? 'Решения';
                             $r_hash = crc32($r_catName);
                             $r_gradClass = "badge-grad-" . (($r_hash % 4) + 1);
                         ?>
-                        <div class="news-card" style="display:flex; flex-direction:column; height:100%;">
+                        <div class="news-card related-article-card">
                             <?php if(!empty($r_art['image'])): ?>
-                            <a href="/blog/<?= urlencode($r_art['slug']) ?>/" class="news-img-wrap" style="padding-top:60%;">
+                            <a href="/blog/<?= urlencode($r_art['slug']) ?>/" class="news-img-wrap">
                                 <img src="<?= htmlspecialchars($r_art['image']) ?>" alt="<?= htmlspecialchars($r_art['title']) ?>" class="news-img" loading="lazy">
                                 <div class="news-badges">
-                                    <span class="news-badge <?= $r_gradClass ?>" style="border-radius: 0 0 12px 0;"><?= htmlspecialchars($r_catName) ?></span>
+                                    <span class="news-badge news-badge-right <?= $r_gradClass ?>"><?= htmlspecialchars($r_catName) ?></span>
                                 </div>
                             </a>
                             <?php endif; ?>
-                            <div class="news-body" style="padding:20px; flex-grow:1; display:flex; flex-direction:column;">
-                                <div class="news-meta-row" style="margin-bottom:12px; border-bottom:none;">
+                            <div class="news-body">
+                                <div class="news-meta-row">
                                     <span><?= date('d.m.Y', strtotime($r_art['published_at'] ?? $r_art['created_at'])) ?></span>
                                 </div>
-                                <h4 class="news-title" style="font-size:1.2rem; margin-bottom:0px;">
+                                <h4 class="news-title">
                                     <a href="/blog/<?= urlencode($r_art['slug']) ?>/">
                                         <?= htmlspecialchars(__($r_art['title'])) ?>
                                     </a>
@@ -284,15 +284,15 @@ if ($slug) {
             <!-- СПИСОК СТАТЕЙ КАРТОЧКАМИ -->
             <div class="blog-header">
                 <h1><?= __('blog_main_title') ?></h1>
-                <p style="color:var(--color-text-secondary); font-size:1.2rem; max-width:700px; margin:0 auto; line-height:1.6;">
+                <p class="blog-header-desc">
                     <?= __('blog_main_desc') ?>
                 </p>
             </div>
             
             <div class="news-layout-grid">
                 <?php if (empty($articles)): ?>
-                    <div style="grid-column: 1 / -1; text-align:center; padding: 60px; color:#666;">
-                        <i class="far fa-folder-open fa-3x mb-3" style="opacity:0.5; display:block; margin-bottom:20px;"></i>
+                    <div class="blog-empty-state">
+                        <i class="far fa-folder-open fa-3x blog-empty-icon"></i>
                         <h3><?= __('blog_empty_title') ?></h3>
                         <p><?= __('blog_empty_desc') ?></p>
                     </div>
@@ -315,9 +315,9 @@ if ($slug) {
                                 <a href="/blog/<?= urlencode($art['slug']) ?>/" class="news-img-wrap">
                                     <img src="<?= htmlspecialchars($art['image']) ?>" alt="<?= htmlspecialchars($art['title']) ?>" class="news-img" loading="lazy">
                                     <div class="news-badges">
-                                        <span class="news-badge <?= $gradClass ?>" style="border-radius: 0 0 12px 0;"><?= htmlspecialchars($catName) ?></span>
+                                        <span class="news-badge news-badge-right <?= $gradClass ?>"><?= htmlspecialchars($catName) ?></span>
                                         <?php if($isHot): ?>
-                                            <span class="news-badge" style="background:#e74c3c; border-radius: 0 0 12px 0;">🔥 Hot</span>
+                                            <span class="news-badge news-badge-hot">🔥 Hot</span>
                                         <?php endif; ?>
                                     </div>
                                 </a>
@@ -348,7 +348,7 @@ if ($slug) {
                                     <div class="news-badges">
                                         <span class="news-badge <?= $gradClass ?>"><?= htmlspecialchars($catName) ?></span>
                                     </div>
-                                    <h3 class="news-title" style="margin-top:auto;">
+                                    <h3 class="news-title news-title-auto">
                                         <a href="/blog/<?= urlencode($art['slug']) ?>/">
                                             <?= htmlspecialchars(__($art['title'])) ?>
                                         </a>

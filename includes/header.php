@@ -2,7 +2,7 @@
 <header class="header<?= $is_blog_page ? ' scrolled' : '' ?>" id="header">
     <div class="container">
         <nav class="nav">
-            <a href="/" class="logo" style="gap: 0rem;">
+            <a href="/" class="logo">
                 <div class="logo-icon">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <?php if ($is_blog_page): ?>
@@ -17,7 +17,7 @@
                         </defs>
                     </svg>
                 </div>
-                <div class="logo-type" style="margin-left: -0.4rem;">
+                <div class="logo-type">
                     <span class="logo-text">olozin</span>
                     <span class="logo-accent">.ru</span>
                 </div>
@@ -28,7 +28,7 @@
                 <li><a href="/#portfolio" class="nav-link"><?= __('menu_portfolio') ?></a></li>
                 <li><a href="/#process" class="nav-link"><?= __('menu_process') ?></a></li>
                 <li><a href="/#pricing" class="nav-link"><?= __('menu_pricing') ?></a></li>
-                <li><a href="/blog/" class="nav-link<?= $is_blog_page ? '" style="color:var(--color-primary)' : '' ?>"><?= __('menu_blog') ?></a></li>
+                <li><a href="/blog/" class="nav-link<?= $is_blog_page ? ' nav-link-active' : '' ?>"><?= __('menu_blog') ?></a></li>
                 <li><a href="/#contacts" class="nav-link"><?= __('menu_contacts') ?></a></li>
                 
                 <li class="mobile-contact-item">
@@ -61,7 +61,7 @@
                 ?>
                 <div class="lang-dropdown" id="langDropdown">
                     <button class="lang-dropdown-toggle" aria-label="Change Language">
-                        <img src="/assets/flags/<?= $curr['icon'] ?>.svg" width="20" alt="<?= strtoupper($curr['icon']) ?>" style="border-radius: 2px;">
+                        <img src="/assets/flags/<?= $curr['icon'] ?>.svg" width="20" alt="<?= strtoupper($curr['icon']) ?>" class="lang-flag">
                         <span class="lang-code"><?= strtoupper($lang) ?></span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M6 9l6 6 6-6"/>
@@ -70,7 +70,7 @@
                     <div class="lang-dropdown-menu">
                         <?php foreach ($langs_display as $k => $v): ?>
                             <a href="?lang=<?= $k ?><?= $is_blog_page && isset($slug) ? '&article='.urlencode($slug) : '' ?>" class="lang-option <?= $k === $lang ? 'active' : '' ?>" data-lang="<?= $k ?>">
-                                <img src="/assets/flags/<?= $v['icon'] ?>.svg" width="20" alt="<?= strtoupper($v['icon']) ?>" style="border-radius: 2px;"> <?= $v['name'] ?>
+                                <img src="/assets/flags/<?= $v['icon'] ?>.svg" width="20" alt="<?= strtoupper($v['icon']) ?>" class="lang-flag"> <?= $v['name'] ?>
                             </a>
                         <?php endforeach; ?>
                     </div>
@@ -83,7 +83,7 @@
                 
                 <?php if (!$is_blog_page): ?>
                 <!-- Телефон в шапке (как у всех ТОП конкурентов) -->
-                <a href="tel:+79234064441" class="header-phone d-none-mobile" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:0.9rem;color:var(--color-text);text-decoration:none;white-space:nowrap;" title="Позвонить">
+                <a href="tel:+79234064441" class="header-phone d-none-mobile" title="Позвонить">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     +7 (923) 406-44-41
                 </a>

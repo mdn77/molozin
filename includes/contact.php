@@ -10,8 +10,8 @@
         <?php if (!empty($seo_faq_json)): 
             $faq_items = json_decode($seo_faq_json, true);
             if ($faq_items): ?>
-            <div class="faq-accordion" style="margin-top: 40px;">
-                <h2 style="margin-bottom: 30px;">Часто задаваемые вопросы</h2>
+            <div class="faq-accordion">
+                <h2 class="faq-heading">Часто задаваемые вопросы</h2>
                 <?php foreach($faq_items as $i => $item): ?>
                 <div class="faq-item">
                     <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
