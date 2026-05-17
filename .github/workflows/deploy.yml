@@ -1,0 +1,62 @@
+﻿name: Deploy Molozin to Reg.ru
+# Деплой через GitHub Actions — IP GitHub не банится на Reg.ru
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: ${{ secrets.FTP_PATH }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.env
+            **/uploads/**
+            **/cache/**
+            **/_backups/**
+            **/_dev_scripts/**
+            **/node_modules/**
+            **/vendor/**
+            **/.vscode/**
+            **/.idea/**
+            **/.gemini/**
+            **/plans/**
+            **/*.log
+            **/*.bak
+            **/*.tmp
+            **/*.ps1
+            **/*.bat
+            **/*.sh
+            **/*.broken
+            **/.cursorrules
+            **/.antigravity*
+          protocol: ftps
+          port: 21
+          log-level: minimal
+          dangerous-clean-slate: false
+
+      - name: Notify Success
+        if: success()
+        run: echo "Деплой Molozin завершён успешно!"
+
+      - name: Notify Failure
+        if: failure()
+        run: echo "Деплой Molozin провалился!"
